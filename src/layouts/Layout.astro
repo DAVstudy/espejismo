@@ -1,50 +1,102 @@
 ---
 interface Props {
-	title: string;
+  title: string;
+  description: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <slot />
+  </body>
 </html>
+
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+  * {
+    /* Include padding and border in size calculation. */
+    box-sizing: border-box;
+    /* Position base on inmmediate parent and allow adjusting top/right/bottom/left */
+    position: relative;
+    /* Prevent grid and flex items from spilling out of their container. */
+    min-width: 0;
+  }
+
+	/* Aquí definimos las Custom properties */
+  :root {
+		--background-color: white;
+    --text-color-primary: #393939;
+    /* Tipografía */
+    --primary-font: Poppins, Verdana, sans-serif;
+    --secundary-font: Poppins, Verdana;
+		
+  }
+
+  body {
+    /* Ensure that the body fills the entire viewport. */
+    min-height: 100dvh;
+    /* Configuramos la tipografía para toda la web */
+    font-size: 100%;
+    font-family: var(--primary-font);
+    color: var(--text-color-primary);
+		/* Configuramos el color de fondo con la custom property */
+		background: var(--background-color);
+  }
+
+  h1. h2,
+  h3,
+  h4 {
+    /* Balance headings across multiple lines into an even block. */
+    text-wrap: balance;
+  }
+
+  p {
+    /* Prevent text orphans (single words on last line). */
+    text-wrap: balance;
+  }
+
+  
+
+  /* Evitamos problemas con las imagenes */
+  img,
+  picture,
+  video,
+  iframe,
+  figure {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+  }
+
+  /* Reseteamos los enlaces para funcionar como cajas... */
+  a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+  }
+
+  /* ... excepto los que se encuentran en párrafos */
+  p a {
+    display: inline;
+  }
+
+  html {
+    font-family: system-ui, sans-serif;
+    scroll-behavior: smooth; /* Configura las anclas suaves */
+  }
 </style>
