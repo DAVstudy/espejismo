@@ -38,8 +38,10 @@ const { title, description } = Astro.props;
 
 	/* Aquí definimos las Custom properties */
   :root {
-		--background-color: white;
-    --text-color-primary: #393939;
+		--background-color: rgb(226, 241, 253);
+    --text-color-primary: #005aa3;
+    --color-primary: #005aa3;
+    --color-secundary: #4698db;
     /* Tipografía */
     --primary-font: Poppins, Verdana, sans-serif;
     --secundary-font: Poppins, Verdana;
@@ -77,9 +79,8 @@ const { title, description } = Astro.props;
   video,
   iframe,
   figure {
-    max-width: 100%;
-    width: 100%;
     display: block;
+    border-radius: 8px;
   }
 
   /* Reseteamos los enlaces para funcionar como cajas... */
