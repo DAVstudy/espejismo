@@ -1,61 +1,98 @@
 ---
 interface Props {
-	title: string;
-	body: string;
-	href: string;
+  title: string;
+  body: string;
+  href: string;
+	image: string;
 }
 
-const { href, title, body } = Astro.props;
+const { href, title, body, image} = Astro.props;
 ---
 
 <li class="link-card">
-	<a href={href}>
-		<h2>
-			{title}
-			<span>&rarr;</span>
-		</h2>
-		<p>
-			{body}
-		</p>
-	</a>
+  <a href={href}>
+    <h2>
+      {title}
+    </h2>
+    <p>
+      {body}
+    </p>
+		<div>
+			<img src={image} alt="" width="250" height="250">
+		</div>
+  </a>
 </li>
 <style>
-	.link-card {
-		list-style: none;
+
+  .link-card {
+    list-style: none;
+    display: flex;
+    background-image: radial-gradient(
+      100% 100% at 100% 0,
+      #5adaff 0,
+      #5468ff 100%
+    );
+    border-radius: 7px;
+    box-shadow:
+      rgba(45, 35, 66, 0.4) 0 2px 4px,
+      rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+      rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+		width: 320px;
+  }
+
+  .link-card > a {
+    width: 100%;
+    text-decoration: none;
+    line-height: 1.4;
+    padding: calc(2rem - 1px);
+    border-radius: 8px;
+    color: white;
+  }
+
+  h2 {
+		min-height: 64px;
+    margin: 0;
+    font-size: 1.5rem;
+    transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+		text-align: center;
+  }
+
+  p {
+		height: 200px;
+    margin-block: 1rem;
+		text-align: justify;
+  }
+
+	div {
 		display: flex;
-		padding: 1px;
-		background-color: #23262d;
-		background-image: none;
-		background-size: 400%;
-		border-radius: 7px;
-		background-position: 100%;
-		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+		justify-content: center;
+		align-items: center;
 	}
-	.link-card > a {
-		width: 100%;
-		text-decoration: none;
-		line-height: 1.4;
-		padding: calc(1.5rem - 1px);
-		border-radius: 8px;
-		color: white;
-		background-color: #23262d;
-		opacity: 0.8;
-	}
-	h2 {
-		margin: 0;
-		font-size: 1.25rem;
-		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-	}
-	p {
-		margin-top: 0.5rem;
-		margin-bottom: 0;
-	}
-	.link-card:is(:hover, :focus-within) {
-		background-position: 0;
-		background-image: var(--accent-gradient);
-	}
-	.link-card:is(:hover, :focus-within) h2 {
-		color: rgb(var(--accent-light));
-	}
+
+  .link-card:is(:hover, :focus-within) h2 {
+    color: #c1f2ff;
+  }
+
+	.link-card:focus {
+    box-shadow:
+      #3c4fe0 0 0 0 1.5px inset,
+      rgba(45, 35, 66, 0.4) 0 2px 4px,
+      rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+      #3c4fe0 0 -3px 0 inset;
+  }
+
+  .link-card:hover {
+    box-shadow:
+      rgba(45, 35, 66, 0.4) 0 4px 8px,
+      rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+      #3c4fe0 0 -3px 0 inset;
+    transform: translateY(-2px);
+  }
+
+  .link-card:active {
+    box-shadow: #3c4fe0 0 3px 7px inset;
+    transform: translateY(2px);
+  }
+
+
 </style>
